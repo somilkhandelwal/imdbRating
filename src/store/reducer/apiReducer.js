@@ -7,13 +7,13 @@
   const glossaryReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-      case 'FETCH_LOADING':
+      case FETCH_LOADING:
         newState = {
           ...state,
           loading: action.loading
         };
         return newState;
-        case 'FECTED_RESULT':
+        case FECTED_RESULT:
         newState = {
           ...state,
           loading: false,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import actionTypes from '../store/action/apiActions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -9,7 +8,6 @@ import MediaCard from './Common/MediaCard';
 class ResultGrid extends React.Component {
     render() {
         const { classes, items, loading } = this.props;
-        console.log(this.props)
         if (!items || !items.length) return null
         return (
             <React.Fragment>
