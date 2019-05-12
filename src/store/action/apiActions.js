@@ -1,4 +1,6 @@
-import api from '../../service/api/api'
+import api from '../../service/api/api';
+import urls from '../../service/urls';
+import { history } from '../../service/history'
 export const FETCH_LOADING = 'FETCH_LOADING';
 export const FECTED_RESULT = 'FECTED_RESULT';
 const baseUrl = 'http://www.omdbapi.com/'
@@ -15,6 +17,15 @@ const filterQueryCall = query => {
         )
     };
 }
+const specificMovieCall = query => {
+    return dispatch => {
+        api.apiGet(baseUrl, Object.assign(fixedParams, query),
+            data => console.log(data),
+            error => console.log(error)
+        )
+    };
+}
 export default {
-    filterQueryCall
+    filterQueryCall,
+    specificMovieCall,
 }

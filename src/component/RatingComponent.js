@@ -1,26 +1,23 @@
-import React, { Component } from 'react'
-import { Grid } from '@material-ui/core'
+import React, { Component, Fragment } from 'react'
 import Header from './Common/Header'
-import ResultGrid from './ResultGrid'
 class RatingComponent extends Component {
-
     render() {
+        const { approutes } = this.props;
+        console.log(this.props)
         return (
             <div className="App">
                 <Header></Header>
-                <Grid container>
-                    <ResultGrid></ResultGrid>
-                </Grid>
+                {approutes}
             </div>
         )
     }
 }
 
 RatingComponent.propTypes = {
-    
+
 };
 RatingComponent.defaultProps = {
-  
+
 };
 
 export default RatingComponent;

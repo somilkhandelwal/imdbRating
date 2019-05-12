@@ -18,10 +18,10 @@ const styles = {
 };
 
 function MediaCard(props) {
-  const { classes, item: {Poster, Title,Type, imdbID, Year} } = props;
+  const { classes, item: {Poster, Title,Type, imdbID, Year}, onSelect } = props;
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea onClick={()=> onSelect(imdbID)} >
         <CardMedia
           className={classes.media}
           image={Poster}
@@ -48,7 +48,8 @@ function MediaCard(props) {
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  item: PropTypes.object
+  item: PropTypes.object,
+  onSelect: PropTypes.func.isRequired
 };
 MediaCard.defaultProps = {
     item: null

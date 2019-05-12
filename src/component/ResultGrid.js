@@ -4,19 +4,49 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Grid, CircularProgress } from '@material-ui/core'
 import MediaCard from './Common/MediaCard';
+import { history } from '../service/history';
+import urls from '../service/urls'
+
 
 class ResultGrid extends React.Component {
+    renderNoContent = () => {
+        const { response } = this.props;
+        if(response==='False')
+        {
+            // TODO make a genric componet for No Result and Search Result
+            return (
+                <Grid container>
+                    <Grid item>
+                        No Result
+                    </Grid>
+                </Grid>
+            )
+
+        }
+        return (
+            <Grid container>
+                <Grid item>
+                    Please Search Result
+                </Grid>
+            </Grid>
+        )
+    }
     render() {
-        const { classes, items, loading } = this.props;
-        if (!items || !items.length) return null
+        const {items, loading, navigate } = this.props;
+        if (!items || !items.length) return this.renderNoContent()
+        debugger
         return (
             <React.Fragment>
                 {loading ? <CircularProgress
                     variant="determinate"
-                /> : <Grid justify="space-evenly" style={{ margin: '8px' }} spacing={16} container >
-                        {items.map(item => <Grid key={item.imdbID} item xs={3}><MediaCard item={item}></MediaCard></Grid>)}
+                /> : <Grid justify="space-evenly" style={{ margin: '0px', width: '100%'}} spacing={16} container >
+                        {items.map(item => 
+                            <Grid key={item.imdbID} item xs={3}>
+                                <MediaCard item={item} onSelect={id => history.push(urls.movies(id))}/> 
+                            </Grid>
+                            )
+                        }
                     </Grid>}
-
             </React.Fragment>
         );
     }
@@ -28,14 +58,13 @@ ResultGrid.propTypes = {
     items: PropTypes.array
 };
 ResultGrid.defaultProps = {
-    response: 'False',
+    response: null,
     items: null
 };
 
 const mapStateToProps = state => {
-    const response = (state.apiReducer.data && state.apiReducer.data.data.Response) || 'False';
+    const response = (state.apiReducer.data && state.apiReducer.data.data.Response);
     let items = [];
-    debugger
     if (response === 'True')
         items = state.apiReducer.data.data.Search || [];
     return {
@@ -47,7 +76,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        filterQueryCall: (e) => dispatch(actionTypes.filterQueryCall(e)),
+        navigate: (id) => dispatch(actionTypes.navigate(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ResultGrid);

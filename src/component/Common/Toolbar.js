@@ -81,6 +81,7 @@ componentWillUnmount()
 }
 notifyChange = (supposedValue) =>{
     const { current } = this.inputRef;
+    debugger
     const { filterQueryCall, loading } = this.props;
     if (supposedValue !== current.value) return;
 
@@ -98,7 +99,7 @@ notifyChange = (supposedValue) =>{
           }, 150);
           return;
       }
-     
+     debugger
       filterQueryCall({s:current.value,page:1})
       console.log(current.value);
 }
