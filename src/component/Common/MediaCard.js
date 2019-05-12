@@ -12,9 +12,12 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    height:300,
+    minHeight:300,
     width:300
   },
+  cardContent: {
+    minHeight:120
+  }
 };
 
 function MediaCard(props) {
@@ -27,7 +30,7 @@ function MediaCard(props) {
           image={Poster}
           title={Title}
         />
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="subtitle1">
             {`Name : ${Title}`}
           </Typography>

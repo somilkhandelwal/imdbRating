@@ -11,7 +11,7 @@ const fixedParams = {
 const filterQueryCall = query => {
     return dispatch => {
         dispatch({ type: FETCH_LOADING, loading: true })
-        api.apiGet(baseUrl, Object.assign(fixedParams, query),
+        api.apiGet(baseUrl, Object.assign({}, fixedParams, query),
             data => dispatch({ type: FECTED_RESULT, data }),
             error => dispatch({ type: FETCH_LOADING, loading: false })
         )
@@ -19,7 +19,7 @@ const filterQueryCall = query => {
 }
 const specificMovieCall = query => {
     return dispatch => {
-        api.apiGet(baseUrl, Object.assign(fixedParams, query),
+        api.apiGet(baseUrl, Object.assign({}, fixedParams, query),
             data => console.log(data),
             error => console.log(error)
         )

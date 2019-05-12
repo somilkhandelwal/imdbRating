@@ -21,7 +21,7 @@ class MovieBrowse extends Component {
     render() {
         return (
             <React.Fragment>
-                <div> HELLO</div>
+                
             </React.Fragment>
         )
     }
@@ -33,18 +33,6 @@ MovieBrowse.propTypes = {
 MovieBrowse.defaultProps = {
 
 };
-
-// const mapStateToProps = state => {
-//     const response = (state.apiReducer.data && state.apiReducer.data.data.Response);
-//     let items = [];
-//     if (response === 'True')
-//         items = state.apiReducer.data.data.Search || [];
-//     return {
-//         loading: state.apiReducer.loading,
-//         response,
-//         items
-//     };
-// }
 
 const mapDispatchToProps = dispatch => {
     return {
