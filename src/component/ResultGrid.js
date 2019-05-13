@@ -34,7 +34,6 @@ class ResultGrid extends React.Component {
     render() {
         const {items, loading, navigate } = this.props;
         if (!items || !items.length) return this.renderNoContent()
-        debugger
         return (
             <React.Fragment>
                 {loading ? <CircularProgress
